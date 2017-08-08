@@ -1,0 +1,4 @@
+KLEE_FORK_INVARIANT_INPUT
+(Eq 0
+    (ReadLSB w64 8 Root))
+

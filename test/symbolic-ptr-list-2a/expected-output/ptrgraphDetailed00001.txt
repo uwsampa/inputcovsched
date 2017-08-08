@@ -1,0 +1,198 @@
+======= Heap Object #1 =======
+Size: 16
+Name: Other
+Type: local
+Alloc:   %other = alloca %struct.LIST, align 8
+--Field--
+Offset: 8
+Target[0]: 1  (size=16)
+Target[1]: 2  (size=16)
+
+======= Heap Object #2 =======
+Size: 16
+Name: _ZL8traverseP4LISTS0_i.unknown_ptr_obj.P0.T0
+Type: heap
+Alloc:   %3 = getelementptr inbounds %struct.LIST* %other_addr.0, i64 0, i32 1, !dbg !3494
+--Field--
+Offset: 8
+Target[0]: 1  (size=16)
+Target[1]: 2  (size=16)
+Target[2]: 3  (size=16)
+
+======= Heap Object #3 =======
+Size: 16
+Name: _ZL8traverseP4LISTS0_i.unknown_ptr_obj.P0.T0_1
+Type: heap
+Alloc:   %3 = getelementptr inbounds %struct.LIST* %other_addr.0, i64 0, i32 1, !dbg !3494
+--Field--
+Offset: 8
+Target[0]: 1  (size=16)
+Target[1]: 2  (size=16)
+Target[2]: 3  (size=16)
+Target[3]: 4  (size=16)
+
+======= Heap Object #4 =======
+Size: 16
+Name: _ZL8traverseP4LISTS0_i.unknown_ptr_obj.P0.T0_2
+Type: heap
+Alloc:   %3 = getelementptr inbounds %struct.LIST* %other_addr.0, i64 0, i32 1, !dbg !3494
+--Field--
+Offset: 8
+Target[0]: 1  (size=16)
+Target[1]: 2  (size=16)
+Target[2]: 3  (size=16)
+Target[3]: 4  (size=16)
+Target[4]: 5  (size=16)
+
+======= Heap Object #5 =======
+Size: 16
+Name: _ZL8traverseP4LISTS0_i.unknown_ptr_obj.P0.T0_3
+Type: heap
+Alloc:   %3 = getelementptr inbounds %struct.LIST* %other_addr.0, i64 0, i32 1, !dbg !3494
+--Field--
+Offset: 8
+Target[0]: 1  (size=16)
+Target[1]: 2  (size=16)
+Target[2]: 3  (size=16)
+Target[3]: 4  (size=16)
+Target[4]: 5  (size=16)
+Target[5]: 6  (size=16)
+
+======= Heap Object #6 =======
+Size: 16
+Name: _ZL8traverseP4LISTS0_i.unknown_ptr_obj.P0.T0_4
+Type: heap
+Alloc:   %3 = getelementptr inbounds %struct.LIST* %other_addr.0, i64 0, i32 1, !dbg !3494
+--Field--
+Offset: 8
+Target[0]: 1  (size=16)
+Target[1]: 2  (size=16)
+Target[2]: 3  (size=16)
+Target[3]: 4  (size=16)
+Target[4]: 5  (size=16)
+Target[5]: 6  (size=16)
+Target[6]: 7  (size=16)
+
+======= Heap Object #7 =======
+Size: 16
+Name: _ZL8traverseP4LISTS0_i.unknown_ptr_obj.P0.T0_5
+Type: heap
+Alloc:   %3 = getelementptr inbounds %struct.LIST* %other_addr.0, i64 0, i32 1, !dbg !3494
+--Field--
+Offset: 8
+Target[0]: 1  (size=16)
+Target[1]: 2  (size=16)
+Target[2]: 3  (size=16)
+Target[3]: 4  (size=16)
+Target[4]: 5  (size=16)
+Target[5]: 6  (size=16)
+Target[6]: 7  (size=16)
+Target[7]: 8  (size=16)
+
+======= Heap Object #8 =======
+Size: 16
+Name: _ZL8traverseP4LISTS0_i.unknown_ptr_obj.P0.T0_6
+Type: heap
+Alloc:   %3 = getelementptr inbounds %struct.LIST* %other_addr.0, i64 0, i32 1, !dbg !3494
+--Field--
+Offset: 8
+Target[0]: 1  (size=16)
+Target[1]: 2  (size=16)
+Target[2]: 3  (size=16)
+Target[3]: 4  (size=16)
+Target[4]: 5  (size=16)
+Target[5]: 6  (size=16)
+Target[6]: 7  (size=16)
+Target[7]: 8  (size=16)
+Target[8]: 11  (size=16)
+
+======= Heap Object #9 =======
+Size: 16
+Name: Root
+Type: local
+Alloc:   %root = alloca %struct.LIST, align 8
+--Field--
+Offset: 8
+Target[0]: 9  (size=16)
+Target[1]: 10  (size=16)
+
+======= Heap Object #10 =======
+Size: 16
+Name: _ZL8traverseP4LISTS0_i.unknown_ptr_obj.P0.T0_7
+Type: heap
+Alloc:   %9 = getelementptr inbounds %struct.LIST* %n_addr.0, i64 0, i32 0, !dbg !3498
+--Field--
+Offset: 8
+Target[0]: 9  (size=16)
+Target[1]: 10  (size=16)
+Target[2]: 15  (size=16)
+
+======= Heap Object #11 =======
+Size: 16
+Name: _ZL8traverseP4LISTS0_i.unknown_ptr_obj.P0.T0_8
+Type: heap
+Alloc:   %3 = getelementptr inbounds %struct.LIST* %other_addr.0, i64 0, i32 1, !dbg !3494
+--Field--
+Offset: 8
+Target[0]: 1  (size=16)
+Target[1]: 2  (size=16)
+Target[2]: 3  (size=16)
+Target[3]: 4  (size=16)
+Target[4]: 5  (size=16)
+Target[5]: 6  (size=16)
+Target[6]: 7  (size=16)
+Target[7]: 8  (size=16)
+Target[8]: 11  (size=16)
+Target[9]: 12  (size=16)
+
+======= Heap Object #12 =======
+Size: 16
+Name: _ZL8traverseP4LISTS0_i.unknown_ptr_obj.P0.T0_9
+Type: heap
+Alloc:   %3 = getelementptr inbounds %struct.LIST* %other_addr.0, i64 0, i32 1, !dbg !3494
+--Field--
+Offset: 8
+Target[0]: 1  (size=16)
+Target[1]: 2  (size=16)
+Target[2]: 3  (size=16)
+Target[3]: 4  (size=16)
+Target[4]: 5  (size=16)
+Target[5]: 6  (size=16)
+Target[6]: 7  (size=16)
+Target[7]: 8  (size=16)
+Target[8]: 11  (size=16)
+Target[9]: 12  (size=16)
+Target[10]: 13  (size=16)
+
+======= Heap Object #13 =======
+Size: 16
+Name: _ZL8traverseP4LISTS0_i.unknown_ptr_obj.P0.T0_10
+Type: heap
+Alloc:   %3 = getelementptr inbounds %struct.LIST* %other_addr.0, i64 0, i32 1, !dbg !3494
+--Field--
+Offset: 8
+Target[0]: 1  (size=16)
+Target[1]: 2  (size=16)
+Target[2]: 3  (size=16)
+Target[3]: 4  (size=16)
+Target[4]: 5  (size=16)
+Target[5]: 6  (size=16)
+Target[6]: 7  (size=16)
+Target[7]: 8  (size=16)
+Target[8]: 11  (size=16)
+Target[9]: 12  (size=16)
+Target[10]: 13  (size=16)
+Target[11]: 14  (size=16)
+
+======= Heap Object #14 =======
+Size: 16
+Name: _ZL8traverseP4LISTS0_i.unknown_ptr_obj.P0.T0_11
+Type: heap
+Alloc:   %3 = getelementptr inbounds %struct.LIST* %other_addr.0, i64 0, i32 1, !dbg !3494
+
+======= Heap Object #15 =======
+Size: 16
+Name: _ZL8traverseP4LISTS0_i.unknown_ptr_obj.P0.T0_12
+Type: heap
+Alloc:   %9 = getelementptr inbounds %struct.LIST* %n_addr.0, i64 0, i32 0, !dbg !3498
+

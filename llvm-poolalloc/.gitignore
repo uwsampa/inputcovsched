@@ -1,0 +1,17 @@
+*.o
+*.a
+*.swp
+*~
+TAGS
+
+Release/
+Release+Asserts/
+Release+Profile+Asserts/
+Debug/
+Debug+Asserts/
+
+Makefile.common
+autoconf
+config.log
+config.status
+configure.out

@@ -1,0 +1,16 @@
+======= Heap Object #1 =======
+Size: 16
+Name: Root
+Type: local
+Alloc:   %root = alloca %struct.LIST, align 8
+--Field--
+Offset: 8
+Target[0]: 1  (size=16)
+Target[1]: 2  (size=16)
+
+======= Heap Object #2 =======
+Size: 16
+Name: _ZL8traverseP4LISTS0_i.unknown_ptr_obj.P0.T0
+Type: heap
+Alloc:   %9 = getelementptr inbounds %struct.LIST* %n_addr.0, i64 0, i32 0, !dbg !3498
+

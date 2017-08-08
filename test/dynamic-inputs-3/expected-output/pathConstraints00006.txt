@@ -1,0 +1,17 @@
+KLEE_FORK_ASSUME
+(Ule 0
+     (ReadLSB w32 24 lock))
+
+KLEE_FORK_ASSUME
+(Ule (ReadLSB w32 24 lock)
+     0)
+
+KLEE_FORK_INVARIANT_INPUT
+(Eq (ReadLSB w32 0 foo_1)
+    (ReadLSB w32 0 _ZL6global))
+
+KLEE_FORK_INVARIANT_INPUT
+(Eq (Add w32 1
+             (ReadLSB w32 0 _ZL6global))
+    (ReadLSB w32 0 bar_1))
+

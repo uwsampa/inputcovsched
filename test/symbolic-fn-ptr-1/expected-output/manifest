@@ -1,0 +1,8 @@
+expected = ( ( 'ptrgraphDetailed00001.txt',
+               'ptrgraphDetailed00002.txt',
+               'ptrgraphDetailed00003.txt',
+             ),
+           )
+
+unexpected = ( 'ptrgraphDetailed00004.txt',
+             )

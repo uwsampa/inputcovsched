@@ -1,0 +1,18 @@
+--- lib/Linker/LinkModules.cpp	(revision 152147)
++++ lib/Linker/LinkModules.cpp	(working copy)
+@@ -759,9 +759,14 @@
+       // symbol...
+       if (DF->isDeclaration() || DF->isWeakForLinker()) {
+         // But only if aliasee is function too...
+-        if (!isa<Function>(DAliasee))
++        GlobalValue *DAliaseeResolved = DAliasee;
++        if (GlobalAlias *DA = dyn_cast<GlobalAlias>(DAliasee)) {
++          DAliaseeResolved = const_cast<GlobalValue*>(DA->resolveAliasedGlobal(false));
++        }
++        if (!isa<Function>(DAliaseeResolved)) {
+           return Error(Err, "Function-Alias Collision on '" + SGA->getName() +
+                        "': aliasee is not function");
++        }
+ 
+         NewGA = new GlobalAlias(SGA->getType(), SGA->getLinkage(),
+                                 SGA->getName(), DAliaseeConst, Dest);

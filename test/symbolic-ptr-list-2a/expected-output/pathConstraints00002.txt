@@ -1,0 +1,9 @@
+KLEE_FORK_INVARIANT_INPUT
+(Eq false
+    (Eq 0
+        (ReadLSB w64 8 Root)))
+
+KLEE_FORK_INVARIANT_INPUT
+(Eq 0
+    (ReadLSB w64 8 _ZL8traverseP4LISTS0_i.unknown_ptr_obj.P0.T0_7))
+

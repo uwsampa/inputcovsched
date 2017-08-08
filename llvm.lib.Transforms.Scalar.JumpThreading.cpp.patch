@@ -1,0 +1,28 @@
+--- lib/Transforms/Scalar/JumpThreading.cpp	(revision 152147)
++++ lib/Transforms/Scalar/JumpThreading.cpp	(working copy)
+@@ -44,6 +44,11 @@ Threshold("jump-threading-threshold",
+           cl::desc("Max block size to duplicate for jump threading"),
+           cl::init(6), cl::Hidden);
+ 
++static cl::list<std::string>
++ImmobileFunctions("jump-threading-immobile",
++                  cl::desc("List of functions that should not be moved by jump threading"),
++                  cl::CommaSeparated, cl::Hidden);
++
+ namespace {
+   // These are at global scope so static functions can use them too.
+   typedef SmallVectorImpl<std::pair<Constant*, BasicBlock*> > PredValueInfo;
+@@ -242,6 +247,13 @@ static unsigned getJumpThreadDuplication
+         Size += 3;
+       else if (!CI->getType()->isVectorTy())
+         Size += 1;
++      if (const Function *F = CI->getCalledFunction()) {
++        for (size_t k = 0; k < ImmobileFunctions.size(); ++k)
++          if (F->getName() == ImmobileFunctions[k]) {
++            Size += 1000;  // make it very unlikely the call will be moved
++            break;
++          }
++      }
+     }
+   }
+ 

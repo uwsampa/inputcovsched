@@ -1,0 +1,16 @@
+KLEE_FORK_ASSUME
+(Sle 1
+     (ReadLSB w32 0 X))
+
+KLEE_FORK_ASSUME
+(Slt (ReadLSB w32 0 X)
+     4)
+
+KLEE_FORK_ASSUME
+(Sle 1
+     (ReadLSB w32 0 Y))
+
+KLEE_FORK_ASSUME
+(Slt (ReadLSB w32 0 Y)
+     5)
+

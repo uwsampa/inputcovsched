@@ -1,0 +1,34 @@
+KLEE_FORK_BOUNDS_CHECK
+(And (Ule (Add w64 16
+                   N0:(Mul w64 8
+                               (SExt w64 (ReadLSB w32 0 Index))))
+          88)
+     (Ult (Add w64 8 N0) 18446744073709551608))
+
+KLEE_FORK_INVARIANT_INPUT
+(Eq false
+    (Eq 0
+        (ReadLSB w64 N0:(Extract w32 0 (Add w64 8
+                                                (Mul w64 8
+                                                         (SExt w64 (ReadLSB w32 0 Index))))) Root)))
+
+KLEE_FORK_BOUNDS_CHECK
+(And (Ult (Add w64 8
+                   N0:(Mul w64 8
+                               (SExt w64 (ReadLSB w32 0 Index))))
+          18446744073709551608)
+     (Ule (Add w64 16 N0)
+          (ReadLSB w64 0 unknown_obj_size_)))
+
+KLEE_FORK_INVARIANT_INPUT
+(Eq 0
+    (ReadLSB w64 N0:(Extract w32 0 (Add w64 8
+                                            (Mul w64 8
+                                                     (SExt w64 (ReadLSB w32 0 Index))))) U0:[(if (Eq 46912496224128
+                                                                                                     (ReadLSB w64 N0 Root))
+                                                                                                 (Copy @ArrayForMemcpy (Forall (QVar w32 $MemcpyIdx_1)
+                                                                                                                               (Eq (Read w8 (QVar w32 $MemcpyIdx_1)
+                                                                                                                                            ArrayForMemcpy)
+                                                                                                                                   (Read w8 (QVar w32 $MemcpyIdx_1)
+                                                                                                                                            Root)))))] @ _ZL8traverseP4TREEii.unknown_ptr_obj.P0.T0))
+

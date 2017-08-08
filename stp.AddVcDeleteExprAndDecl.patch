@@ -1,0 +1,36 @@
+Index: src/c_interface/c_interface.cpp
+===================================================================
+--- src/c_interface/c_interface.cpp	(revision 1668)
++++ src/c_interface/c_interface.cpp	(working copy)
+@@ -1759,6 +1759,17 @@
+   delete input;
+ }
+ 
++void vc_DeleteExprAndDecl(Expr e) {
++  nodestar input = (nodestar)e;
++  for (size_t k = 0; k < decls->size(); ++k) {
++    if ((*decls)[k] == *input) {
++      decls->erase(decls->begin() + k);
++      break;
++    }
++  }
++  delete input;
++}
++
+ exprkind_t getExprKind(Expr e) {
+   nodestar input = (nodestar)e;
+   return (exprkind_t)(input->GetKind());
+Index: src/c_interface/c_interface.h
+===================================================================
+--- src/c_interface/c_interface.h	(revision 1668)
++++ src/c_interface/c_interface.h	(working copy)
+@@ -366,6 +366,9 @@
+   //deletes the expression e
+   void vc_DeleteExpr(Expr e);
+ 
++  //deletes the expression and removes it from the list of decls
++  void vc_DeleteExprAndDecl(Expr e);
++
+   //Get the whole counterexample from the current context
+   WholeCounterExample vc_getWholeCounterExample(VC vc);
+ 

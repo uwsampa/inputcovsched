@@ -1,0 +1,23 @@
+======= Parallel Region #1 =======
+Stack:
+  <init>
+RegionEdge[0].traceId = 1
+RegionEdge[0].exits = no
+RegionEdge[0].nextRegion = 2
+
+======= Parallel Region #2 =======
+Stack:
+  <0,2>
+    0x4024840 _ZL5stuffi /sampa/home/tbergan/testing/src/test/dynamic-inputs-2/test.cpp:24
+    0x4c5f530 __user_main /sampa/home/tbergan/testing/src/test/dynamic-inputs-2/test.cpp:56
+    0x40d04e0 __uClibc_main /sampa/home/tbergan/testing/src/uclibc/libc/misc/internals/__uClibc_main.c:550
+    0x42786c0 main ??:??
+RegionEdge[0].traceId = 2
+RegionEdge[0].exits = yes
+RegionEdge[1].traceId = 3
+RegionEdge[1].exits = yes
+RegionEdge[2].traceId = 4
+RegionEdge[2].exits = yes
+RegionEdge[3].traceId = 5
+RegionEdge[3].exits = yes
+

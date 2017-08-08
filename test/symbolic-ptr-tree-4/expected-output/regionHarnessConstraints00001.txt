@@ -1,0 +1,8 @@
+KLEE_FORK_ASSUME
+(Ult (ReadLSB w32 0 Index)
+     10)
+
+KLEE_FORK_ASSUME
+(Eq (ReadLSB w64 0 Root_A)
+    (ReadLSB w64 0 Root_B))
+

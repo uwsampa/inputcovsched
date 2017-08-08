@@ -1,0 +1,4 @@
+KLEE_FORK_ASSUME
+(Ult (ReadLSB w32 0 x)
+     10)
+

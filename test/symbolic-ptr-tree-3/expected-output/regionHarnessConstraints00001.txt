@@ -1,0 +1,13 @@
+KLEE_FORK_ASSUME
+(Ult (ReadLSB w32 0 Index_A)
+     10)
+
+KLEE_FORK_ASSUME
+(Ult (ReadLSB w32 0 Index_B)
+     10)
+
+KLEE_FORK_ASSUME
+(Eq false
+    (Eq (ReadLSB w32 0 Index_A)
+        (ReadLSB w32 0 Index_B)))
+

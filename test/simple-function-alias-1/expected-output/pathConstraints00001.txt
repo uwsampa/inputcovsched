@@ -1,0 +1,10 @@
+KLEE_FORK_INVARIANT_INPUT
+(Eq false
+    (Slt (ReadLSB w32 0 x)
+         10))
+
+KLEE_FORK_INVARIANT_INPUT
+(Eq false
+    (Slt (ReadLSB w32 4 x)
+         10))
+

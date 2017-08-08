@@ -1,0 +1,4 @@
+KLEE_FORK_INVARIANT_INPUT
+(Ult (ReadLSB w32 0 ThreadWaitSlot.P2.T2)
+     (ReadLSB w32 0 ThreadWaitSlot.P2.T1))
+

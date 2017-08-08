@@ -1,0 +1,61 @@
+These are the paths explored:
+
+=== Region #1 ===
+
+#1,#2,#3,#4 => branching as expected
+
+=== Region #2 ===
+
+#5 => deadlock
+   (false == (48 == 24*i) &&
+    false == (24 == 24*i))
+
+#6 => joining both (first T2, then T1)
+   (true  == (48 == 24*i) &&
+    false == (15 < t[8]) &&
+    false == (0 == t[8]) &&
+    false == (0 == allocated))
+
+#7 => joining both (first T1, then T2)
+   (false == (48 == 24*i) &&
+    true  == (24 == 24*i) &&
+    false == (15 < t[8]) &&
+    false == (0 == t[8]) &&
+    false == (0 == allocated))
+
+---
+
+#8 => joining firstOK (T2), secondErr
+   (true  == (48 == 24*i) &&
+    true  == (15 < t[8]))
+
+#9 => joining firstOK (T2), secondErr
+   (true  == (48 == 24*i) &&
+    false == (15 < t[8]) &&
+    true  == (0 == t[8]))
+
+#10 => joining firstOK (T2), secondErr
+   (true  == (48 == 24*i) &&
+    false == (15 < t[8]) &&
+    false == (0 == t[8]) &&
+    true  == (0 == allocated))
+
+---
+
+#11 => joining firstOK (T1), secondErr
+   (false == (48 == 24*i) &&
+    true  == (24 == 24*i) &&
+    true  == (15 < t[8]))
+
+#12 => joining firstOK (T1), secondErr
+   (false == (48 == 24*i) &&
+    true  == (24 == 24*i) &&
+    false == (15 < t[8]) &&
+    true  == (0 == t[8]))
+
+#13 => joining firstOK (T1), secondErr
+   (false == (48 == 24*i) &&
+    true  == (24 == 24*i) &&
+    false == (15 < t[8]) &&
+    false == (0 == t[8]) &&
+    true  == (0 == allocated))

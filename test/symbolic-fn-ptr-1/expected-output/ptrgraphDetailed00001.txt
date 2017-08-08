@@ -1,0 +1,9 @@
+======= Heap Object #1 =======
+Size: 8
+Name: Ptr
+Type: global
+Alloc: @_ZL3Ptr = internal unnamed_addr global void (i32)* null
+--Field--
+Offset: 0
+Target[0]: @_ZL1Ai
+

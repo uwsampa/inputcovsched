@@ -1,0 +1,3 @@
+This code is a modified version of Klee/Cloud9 that was built against
+an old version of LLVM (SVN revision 152147). It may no longer compile
+or run and is provided as-is for historical purposes.

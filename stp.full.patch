@@ -1,0 +1,198 @@
+Index: src/printer/PLPrinter.cpp
+===================================================================
+--- src/printer/PLPrinter.cpp	(revision 1668)
++++ src/printer/PLPrinter.cpp	(working copy)
+@@ -13,6 +13,7 @@
+ {
+ 
+ using std::string;
++using std::endl;
+ using namespace BEEV;
+ 
+ string functionToCVCName(const Kind k) {
+@@ -38,6 +39,7 @@
+ 	case BVPLUS:
+ 	case SBVDIV:
+ 	case SBVREM:
++	case SBVMOD:
+ 	case BVDIV:
+ 	case BVMOD:
+ 		return _kind_names[k];
+@@ -64,10 +66,8 @@
+ 		return "|";
+ 	case BVAND:
+ 		return "&";
+-	case BVRIGHTSHIFT:
+-		return ">>";
+ 	default: {
+-		cerr << "Unknown name when outputting:";
++		std::cerr << "Unknown name when outputting:";
+ 		FatalError(_kind_names[k]);
+ 		return ""; // to quieten compiler/
+ 	}
+@@ -168,26 +168,55 @@
+         os << "]";
+         break;
+       case BVLEFTSHIFT:
+-        os << "(";
+-        PL_Print1(os, c[0], indentation, letize);
+-        os << " << ";
+-        if (!c[1].isConstant())
+-        {
+-        	FatalError("PL_Print1: The shift argument to a left shift must be a constant. Found:",c[1]);
++        assert(2 == c.size());
++        if (c[1].isConstant()) {
++          os << "(";
++          PL_Print1(os, c[0], indentation, letize);
++          os << " << ";
++          os << c[1].GetUnsignedConst();
++          os << ")";
++          os << "[";
++          os << (c[0].GetValueWidth()-1);
++          os << " : " << "0]";
++        } else {
++          os << "BVSHL(";
++          PL_Print1(os, c[0], indentation, letize);
++          os << ", ";
++          PL_Print1(os, c[1], indentation, letize);
++          os << ")" << endl;
+         }
+-        os << c[1].GetUnsignedConst();
+-        os << ")";
+-        os << "[";
+-        os << (c[0].GetValueWidth()-1);
+-        os << " : " << "0]";
+-
+         break;
++      case BVRIGHTSHIFT:
++        assert(2 == c.size());
++        if (c[1].isConstant()) {
++          os << "(";
++          PL_Print1(os, c[0], indentation, letize);
++          os << " << ";
++          os << c[1].GetUnsignedConst();
++          os << ")";
++        } else {
++          os << "BVLSHR(";
++          PL_Print1(os, c[0], indentation, letize);
++          os << ", ";
++          PL_Print1(os, c[1], indentation, letize);
++          os << ")" << endl;
++        }
++        break;
++      case BVSRSHIFT:
++        assert(2 == c.size());
++        os << "BVASHR(";
++        PL_Print1(os, c[0], indentation, letize);
++        os << ", ";
++        PL_Print1(os, c[1], indentation, letize);
++        os << ")" << endl;
++        break;
+ 
+       case BVMULT:   // variable arity, function name at front, size next, comma separated.
+       case BVSUB:
+       case BVPLUS:
+       case SBVDIV:
+       case SBVREM:
++      case SBVMOD:
+       case BVDIV:
+       case BVMOD:
+     	os << functionToCVCName(kind) << "(";
+@@ -240,7 +269,6 @@
+       case BVCONCAT:  // two arity, infix function name.
+       case BVOR:
+       case BVAND:
+-      case BVRIGHTSHIFT:
+       case EQ:
+       case IFF:
+       case IMPLIES:
+@@ -319,9 +347,9 @@
+       {
+         //ASTNodeMap::iterator it=bm->NodeLetVarMap.begin();
+         //ASTNodeMap::iterator itend=bm->NodeLetVarMap.end();
+-        std::vector<pair<ASTNode, ASTNode> >::iterator 
++        vector<std::pair<ASTNode, ASTNode> >::iterator 
+           it = bm->NodeLetVarVec.begin();
+-        std::vector<pair<ASTNode, ASTNode> >::iterator 
++        vector<std::pair<ASTNode, ASTNode> >::iterator 
+           itend = bm->NodeLetVarVec.end();
+ 
+         os << "(LET ";
+@@ -336,7 +364,7 @@
+ 
+         for (it++; it != itend; it++)
+           {
+-            os << "," << endl;
++            os << "," << std::endl;
+             //print the let var first
+             PL_Print1(os, it->first, indentation, false);
+             os << " = ";
+@@ -347,7 +375,7 @@
+             bm->NodeLetVarMap1[it->second] = it->first;
+           }
+ 
+-        os << " IN " << endl;
++        os << " IN " << std::endl;
+         PL_Print1(os, n, indentation, true);
+         os << ") ";
+       }
+Index: src/AST/ArrayTransformer.h
+===================================================================
+--- src/AST/ArrayTransformer.h	(revision 1668)
++++ src/AST/ArrayTransformer.h	(working copy)
+@@ -130,6 +130,7 @@
+     void ClearAllTables(void)
+     {
+       arrayToIndexToRead.clear();
++      ack_pair.clear();
+     }
+ 
+     void printArrayStats()
+Index: src/STPManager/STP.cpp
+===================================================================
+--- src/STPManager/STP.cpp	(revision 1668)
++++ src/STPManager/STP.cpp	(working copy)
+@@ -46,6 +46,7 @@
+ 
+     // Unfortunatey this is a global variable,which the aux function needs to overwrite sometimes.
+     bool saved_ack = bm->UserFlags.ackermannisation;
++    arrayTransformer->ClearAllTables();
+ 
+     ASTNode original_input;
+ 
+Index: src/c_interface/c_interface.cpp
+===================================================================
+--- src/c_interface/c_interface.cpp	(revision 1668)
++++ src/c_interface/c_interface.cpp	(working copy)
+@@ -1759,6 +1759,17 @@
+   delete input;
+ }
+ 
++void vc_DeleteExprAndDecl(Expr e) {
++  nodestar input = (nodestar)e;
++  for (size_t k = 0; k < decls->size(); ++k) {
++    if ((*decls)[k] == *input) {
++      decls->erase(decls->begin() + k);
++      break;
++    }
++  }
++  delete input;
++}
++
+ exprkind_t getExprKind(Expr e) {
+   nodestar input = (nodestar)e;
+   return (exprkind_t)(input->GetKind());
+Index: src/c_interface/c_interface.h
+===================================================================
+--- src/c_interface/c_interface.h	(revision 1668)
++++ src/c_interface/c_interface.h	(working copy)
+@@ -366,6 +366,9 @@
+   //deletes the expression e
+   void vc_DeleteExpr(Expr e);
+ 
++  //deletes the expression and removes it from the list of decls
++  void vc_DeleteExprAndDecl(Expr e);
++
+   //Get the whole counterexample from the current context
+   WholeCounterExample vc_getWholeCounterExample(VC vc);
+ 

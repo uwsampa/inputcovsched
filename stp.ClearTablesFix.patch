@@ -1,0 +1,24 @@
+Index: src/AST/ArrayTransformer.h
+===================================================================
+--- src/AST/ArrayTransformer.h	(revision 1668)
++++ src/AST/ArrayTransformer.h	(working copy)
+@@ -130,6 +130,7 @@
+     void ClearAllTables(void)
+     {
+       arrayToIndexToRead.clear();
++      ack_pair.clear();
+     }
+ 
+     void printArrayStats()
+Index: src/STPManager/STP.cpp
+===================================================================
+--- src/STPManager/STP.cpp	(revision 1668)
++++ src/STPManager/STP.cpp	(working copy)
+@@ -46,6 +46,7 @@
+ 
+     // Unfortunatey this is a global variable,which the aux function needs to overwrite sometimes.
+     bool saved_ack = bm->UserFlags.ackermannisation;
++    arrayTransformer->ClearAllTables();
+ 
+     ASTNode original_input;
+ 

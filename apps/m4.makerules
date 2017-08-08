@@ -1,0 +1,48 @@
+ifndef SRC
+$(error "m4.makerules error: no SRC provided")
+endif
+
+ifndef TARGET
+$(error "m4.makerules error: no TARGET provided")
+endif
+
+MACROS  = ../c.m4.pthreads
+M4_BASE = .
+M4_HDRS = $(patsubst %.h,%.m4.h,$(HEADERS))
+M4_SRC  = $(patsubst %.c,%.m4.c,$(SRC))
+OBJS    = $(patsubst %.c,obj/%.bc,$(SRC))
+
+TARGET_BC = $(TARGET).bc
+TARGET_LL = $(TARGET).ll
+
+all: $(TARGET_BC) $(TARGET_LL) $(M4_SRC) $(M4_HDRS)
+
+%.m4.h: %.h
+	$(M4) $(M4_BASE)/$(MACROS) $*.c > $*.m4.h
+
+%.m4.c: %.c
+	$(M4) $(M4_BASE)/$(MACROS) $*.c > $*.m4.c
+
+%.m4.cpp: %.cpp
+	$(M4) $(M4_BASE)/$(MACROS) $*.c > $*.m4.cpp
+
+obj/%.ll: %.m4.cpp $(M4_HDRS)
+	mkdir -p obj
+	$(CXX) $(CXXFLAGS) $(LIBS) $< -o $@
+
+obj/%.ll: %.m4.c $(M4_HDRS)
+	mkdir -p obj
+	$(CC) $(CFLAGS) $(LIBS) $< -o $@
+
+obj/%.bc: obj/%.ll
+	llvm-as $< -o $@
+
+$(TARGET_LL): $(TARGET_BC)
+	llvm-dis $< -o $@
+
+$(TARGET_BC): $(OBJS)
+	llvm-link $(OBJS) -o $(TARGET_BC)
+
+clean:
+	rm -rf $(TARGET_BC) $(TARGET_LL) $(M4_HDRS) $(M4_SRC) obj
+

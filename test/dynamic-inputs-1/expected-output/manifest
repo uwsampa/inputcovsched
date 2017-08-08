@@ -1,0 +1,9 @@
+expected = ( ( 'pathConstraints00001.txt',
+               'pathConstraints00002.txt',
+               'pathConstraints00003.txt',
+               'pathConstraints00004.txt',
+             ),
+           )
+
+unexpected = ( 'pathConstraints00005.txt',
+             )

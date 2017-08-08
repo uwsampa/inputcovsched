@@ -1,0 +1,22 @@
+======= Parallel Region #1 =======
+Stack:
+  <init>
+RegionEdge[0].traceId = 1
+RegionEdge[0].exits = no
+RegionEdge[0].nextRegion = 2
+
+======= Parallel Region #2 =======
+Stack:
+  <0,2>
+    0x3db46b8 __user_main /sampa/home/tbergan/testing/src/test/region-simple-3/test.cpp:56
+    0x3db4208 __uClibc_main /sampa/home/tbergan/testing/src/uclibc/libc/misc/internals/__uClibc_main.c:550
+    0x4e92460 main ??:??
+  <1,2>
+    0x4487a78 _ZL1APv /sampa/home/tbergan/testing/src/test/region-simple-3/test.cpp:13
+  <2,2>
+    0x4abdd48 _ZL1BPv /sampa/home/tbergan/testing/src/test/region-simple-3/test.cpp:31
+RegionEdge[0].traceId = 2
+RegionEdge[0].exits = yes
+RegionEdge[1].traceId = 3
+RegionEdge[1].exits = yes
+

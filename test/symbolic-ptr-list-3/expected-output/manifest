@@ -1,0 +1,19 @@
+expected = ( ( 'pathConstraints00001.txt',
+               'pathConstraints00002.txt',
+               'pathConstraints00003.txt',
+               'pathConstraints00004.txt',
+               'pathConstraints00005.txt',
+               'pathConstraints00006.txt',
+             ),
+             ( 'ptrgraphDetailed00001.txt',
+               'ptrgraphDetailed00002.txt',
+               'ptrgraphDetailed00003.txt',
+               'ptrgraphDetailed00004.txt',
+               'ptrgraphDetailed00005.txt',
+               'ptrgraphDetailed00006.txt',
+             ),
+           )
+
+unexpected = ( 'pathConstraints00007.txt',
+               'ptrgraphDetailed00007.txt',
+             )

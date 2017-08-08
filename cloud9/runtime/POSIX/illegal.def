@@ -1,0 +1,27 @@
+////////////////////////////////////////////////////////////////////////////////
+// Illegal calls
+// We INTENTIONALLY do not include models for these calls.  Our basic
+// criteria for making these illegal is that they can affect the process's
+// control flow in a way that is difficult to model.
+////////////////////////////////////////////////////////////////////////////////
+
+// Caller should define __ILLEGAL_CALL(x)
+
+__ILLEGAL_CALL(setjmp)
+__ILLEGAL_CALL(_setjmp)
+__ILLEGAL_CALL(__setjmp)
+__ILLEGAL_CALL(sigsetjmp)
+__ILLEGAL_CALL(longjmp)
+__ILLEGAL_CALL(_longjmp)
+__ILLEGAL_CALL(__longjmp)
+__ILLEGAL_CALL(kill)
+__ILLEGAL_CALL(raise)
+__ILLEGAL_CALL(execl)
+__ILLEGAL_CALL(execp)
+__ILLEGAL_CALL(execle)
+__ILLEGAL_CALL(execv)
+__ILLEGAL_CALL(execvp)
+__ILLEGAL_CALL(execve)
+__ILLEGAL_CALL(fork)
+__ILLEGAL_CALL(vfork)
+__ILLEGAL_CALL(clone)

@@ -1,0 +1,31 @@
+======= Heap Object #1 =======
+Size: 88
+Name: Root
+Type: local
+Alloc:   %root = alloca %struct.TREE, align 8
+--Field--
+Offset: (Extract w32 0 (Add w64 8
+                        (Mul w64 8
+                                 (SExt w64 (ReadLSB w32 0 Index_A)))))
+Target[0]: 1  (size=88)
+Target[1]: 2  (size=88)
+
+======= Heap Object #2 =======
+Size: 88
+Name: _ZL8traverseP4TREEii.unknown_ptr_obj.P0.T0
+Type: heap
+Alloc:   %4 = getelementptr inbounds %struct.TREE* %n_addr.0, i64 0, i32 1, i64 %0, !dbg !3490
+--Field--
+Offset: (Extract w32 0 (Add w64 8
+                        (Mul w64 8
+                                 (SExt w64 (ReadLSB w32 0 Index_A)))))
+Target[0]: 1  (size=88)
+Target[1]: 2  (size=88)
+Target[2]: 3  (size=88)
+
+======= Heap Object #3 =======
+Size: 88
+Name: _ZL8traverseP4TREEii.unknown_ptr_obj.P0.T0_1
+Type: heap
+Alloc:   %4 = getelementptr inbounds %struct.TREE* %n_addr.0, i64 0, i32 1, i64 %0, !dbg !3490
+

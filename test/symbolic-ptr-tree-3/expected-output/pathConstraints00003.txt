@@ -1,0 +1,27 @@
+KLEE_FORK_BOUNDS_CHECK
+(And (Ule (Add w64 16
+                   N0:(Mul w64 8
+                               (SExt w64 (ReadLSB w32 0 Index_A))))
+          88)
+     (Ult (Add w64 8 N0) 18446744073709551608))
+
+KLEE_FORK_INVARIANT_INPUT
+(Eq 0
+    (ReadLSB w64 N0:(Extract w32 0 (Add w64 8
+                                            (Mul w64 8
+                                                     (SExt w64 (ReadLSB w32 0 Index_A))))) Root))
+
+KLEE_FORK_BOUNDS_CHECK
+(And (Ult (Add w64 8
+                   N0:(Mul w64 8
+                               (SExt w64 (ReadLSB w32 0 Index_B))))
+          18446744073709551608)
+     (Ule (Add w64 16 N0) 88))
+
+KLEE_FORK_INVARIANT_INPUT
+(Eq false
+    (Eq 0
+        (ReadLSB w64 N0:(Extract w32 0 (Add w64 8
+                                                (Mul w64 8
+                                                         (SExt w64 (ReadLSB w32 0 Index_B))))) Root)))
+

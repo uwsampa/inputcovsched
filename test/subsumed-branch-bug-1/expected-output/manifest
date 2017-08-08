@@ -1,0 +1,13 @@
+expected = ( ( 'pathConstraints00001.txt',
+               'pathConstraints00002.txt',
+             ),
+             ( 'hbgraph00001.dot',
+               'hbgraph00002.dot',
+             ),
+             'regionHarnessConstraints00001.txt',
+           )
+
+unexpected = ( 'pathConstraints00003.txt',
+               'hbgraph00003.dot',
+               'regionHarnessConstraints00002.txt',
+             )

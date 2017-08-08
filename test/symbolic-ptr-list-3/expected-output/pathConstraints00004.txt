@@ -1,0 +1,19 @@
+KLEE_FORK_INVARIANT_INPUT
+(Eq false
+    (Eq 0
+        (ReadLSB w64 8 Root)))
+
+KLEE_FORK_INVARIANT_INPUT
+(Eq 0
+    (ReadLSB w64 8 U0:[(if (Eq 46912496224384
+                               (ReadLSB w64 8 Root))
+                           (Copy @ArrayForMemcpy (Forall (QVar w32 $MemcpyIdx_1)
+                                                         (Eq (Read w8 (QVar w32 $MemcpyIdx_1)
+                                                                      ArrayForMemcpy)
+                                                             (Read w8 (QVar w32 $MemcpyIdx_1)
+                                                                      Root)))))] @ _ZL8traverseP4LISTi.unknown_ptr_obj.P0.T0))
+
+KLEE_FORK_INVARIANT_INPUT
+(Eq 0
+    (ReadLSB w32 0 Foo))
+
